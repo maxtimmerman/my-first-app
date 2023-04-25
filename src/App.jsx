@@ -1,14 +1,24 @@
-import "./App.css";
-import { DrinkButtons } from "./components/DrinkButtons";
+import { useState } from 'react';
+import './App.css';
+import { DrinkChoice } from './components/DrinkChoice';
+import { DrinkSearch } from './components/DrinkSearch';
+
 
 export const App = () => {
-  const greeting = "Welcome to our cafe!";
+	const [userDrink, setUserDrink] = useState();
 
-  return (
-    <div className="App">
-      <h1>{greeting}</h1>
-      <DrinkButtons />
-    </div>
-  );
-}
+	const greeting = 'Welcome to our cafe!';
 
+	return (
+		<div className="app">
+			{userDrink ? (
+				<DrinkChoice drink={userDrink} onClick={setUserDrink} />
+			) : (
+				<>
+					<h1>{greeting}</h1>
+					<DrinkSearch clickFn={setUserDrink} />
+				</>
+			)}
+		</div>
+	);
+};
